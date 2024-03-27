@@ -1,7 +1,7 @@
 {
-	"name": "plop-generator",
-	"displayName": "Plop Generator",
-	"description": "Generate files using plop templates",
+	"name": "plop-generator-workspace",
+	"displayName": "Plop Generator- Workspace",
+	"description": "Plop Generator With Workspaces",
 	"version": "0.0.1",
 	"publisher": "jpmartinez",
 	"engines": {
@@ -16,13 +16,13 @@
 		"Scaffold"
 	],
 	"author": {
-		"name": "jpmartinez"
+		"name": "jpmartinez -edited by ng"
 	},
 	"activationEvents": [
 		"onCommand:plopgenerator.generate"
 	],
-	"icon": "./images/plop.png",
-	"main": "./src/extension.js",
+	"icon": "images/plop.png",
+	"main": "src/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -51,9 +51,9 @@
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
 		"eslint": "^5.13.0",
+		"prettier": "^1.17.1",
 		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"prettier": "^1.17.1"
+		"vscode": "^1.1.28"
 	},
 	"dependencies": {
 		"node-plop": "^0.18.0"

@@ -1,8 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const vscode = require("vscode");
-const plopFile = path.join(vscode.workspace.rootPath, "plopfile.js");
-const plop = require("node-plop")(plopFile);
+
 
 function getCurrentPath(dir) {
 	if (dir && dir.fsPath) {
@@ -13,7 +12,25 @@ function getCurrentPath(dir) {
 	}
 }
 
-async function getGenerator() {
+function getPlopPath(dir){
+	if (dir && dir.fsPath) {
+		for(let i=0; i< vscode.workspace.workspaceFolders.length; i++){
+			const workspace = vscode.workspace.workspaceFolders[i].uri.fsPath;
+			console.log("workspace",workspace)
+			if(dir.fsPath.includes(workspace+"/")){
+				console.log("Found",path.join(workspace,"plopfile.js"))
+				return path.join(workspace,"plopfile.js");
+			}
+		}
+	}
+	return null;
+
+}
+
+async function getGenerator(dir) {
+	const plopFile = getPlopPath(dir);
+	const plop = require("node-plop")(plopFile);
+
 	const generators = plop.getGeneratorList();
 	if (generators && generators.length > 0) {
 		const generator =

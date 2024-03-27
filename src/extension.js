@@ -4,10 +4,12 @@ const { getGenerator, getGeneratorParameters, getCurrentPath } = require("./plop
 function activate(context) {
 	let disposable = vscode.commands.registerCommand("plopgenerator.generate", async function(dir) {
 		const currentPath = getCurrentPath(dir);
-		const generator = await getGenerator();
+		const generator = await getGenerator(dir);
 		const parameters = await getGeneratorParameters(generator);
+		parameters["destpath"]= currentPath
+		console.log("parameters", parameters,currentPath);
 		try {
-			await generator.runActions({ parameters, destpath: currentPath });
+			await generator.runActions(parameters);
 			vscode.window.showInformationMessage(`${generator.name} generated successfully`);
 		} catch (error) {
 			vscode.window.showErrorMessage(error);
